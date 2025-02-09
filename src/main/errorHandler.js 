@@ -1,0 +1,21 @@
+const { app, dialog } = require('electron');
+const path = require('path');
+const fs = require('fs-extra');
+
+const logPath = path.join(app.getPath('userData'), 'error.log');
+
+module.exports = {
+  handleErrors: () => {
+    process.on('uncaughtException', async (error) => {
+      const errorMessage = `[${new Date().toISOString()}] CRASH: ${error.stack}\n\n`;
+      await fs.appendFile(logPath, errorMessage);
+      dialog.showErrorBox('Application Error', errorMessage);
+      app.quit();
+    });
+
+    process.on('unhandledRejection', async (reason) => {
+      const errorMessage = `[${new Date().toISOString()}] REJECTION: ${reason.stack}\n\n`;
+      await fs.appendFile(logPath, errorMessage);
+    });
+  }
+};

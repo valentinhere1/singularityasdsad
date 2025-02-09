@@ -1,0 +1,13 @@
+const { contextBridge, ipcRenderer } = require('electron');
+const { getTexture } = require('./textureManager');
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  openFile: () => ipcRenderer.invoke('dialog:openFile'),
+  parseSchematic: (filePath) => ipcRenderer.invoke('schematic:parse', filePath),
+  downloadTexture: (blockName) => getTexture(blockName),
+  logError: (message) => ipcRenderer.send('log:error', message)
+});
+contextBridge.exposeInMainWorld('electronAPI', {
+  checkUpdates: () => ipcRenderer.invoke('updater:check'),
+  installUpdate: () => ipcRenderer.invoke('updater:install')
+});

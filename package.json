@@ -1,0 +1,35 @@
+{
+  "name": "schematic-renderer",
+  "version": "1.0.0",
+  "main": "./src/main/main.js",
+  "scripts": {
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "make:win": "npm run make -- --platform=win32",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "dependencies": {
+    "@blueprintjs/core": "^4.9.0",
+    "@electron-forge/cli": "^7.3.1",
+    "@monaco-editor/react": "^4.6.0", 
+    "@react-three/drei": "^9.86.4",
+    "@react-three/fiber": "^8.14.1",
+    "axios": "^1.6.2",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^6.1.7",
+    "fluent-ffmpeg": "^2.1.2",
+    "fs-extra": "^11.2.0",
+    "minecraft-assets": "^1.6.0",
+    "prismarine-schematic": "^1.2.0",
+    "three": "^0.158.0",
+    "zustand": "^4.5.1"
+  },
+  "devDependencies": {
+    "@electron-forge/maker-squirrel": "^7.3.1",
+    "@electron-forge/maker-zip": "^7.3.1",
+    "@electron-forge/plugin-webpack": "^7.3.1",
+    "electron": "^28.1.0",
+    "webpack": "^5.89.0"
+  }
+}

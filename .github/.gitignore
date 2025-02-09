@@ -1,0 +1,5 @@
+echo "node_modules/" >> .gitignore
+echo "out/" >> .gitignore
+echo "resources/" >> .gitignore
+git add .gitignore
+git commit -m "Add proper gitignore"

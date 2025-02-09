@@ -1,0 +1,18 @@
+const { autoUpdater } = require('electron-updater');
+
+module.exports = {
+  initAutoUpdater: (mainWindow) => {
+    autoUpdater.autoDownload = true;
+    autoUpdater.autoInstallOnAppQuit = true;
+    
+    autoUpdater.on('update-available', () => {
+      mainWindow.webContents.send('update:available');
+    });
+
+    autoUpdater.on('update-downloaded', () => {
+      mainWindow.webContents.send('update:downloaded');
+    });
+    
+    autoUpdater.checkForUpdates();
+  }
+};
